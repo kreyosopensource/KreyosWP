@@ -1,0 +1,182 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Kreyos.Classes.Screens.TestView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!-- Templates -->
+    <phone:PhoneApplicationPage.Resources>
+        <!-- Sports Mode 2x2 Template -->
+        <DataTemplate x:Key="Sports_2x2">
+            <Grid x:Name="grid_2x2" Margin="-637,993,878,-417" Grid.RowSpan="2" d:IsLocked="True">
+                <Rectangle x:Name="rect_2x2" Fill="#00000000" HorizontalAlignment="Left" Height="192" Stroke="White" VerticalAlignment="Top" Width="239" Margin="0,1,0,-1" d:IsLocked="True"/>
+                <TextBlock x:Name="txt_2x2_unit" Text="{Binding Unit}" HorizontalAlignment="Left" Height="35" Margin="92,111.622,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" d:IsLocked="True">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock x:Name="txt_2x2_title" Text="{Binding Title}" HorizontalAlignment="Left" Height="35" Margin="96,27.465,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" d:IsLocked="True">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock x:Name="txt_2x2_value" Text="{Binding Value}" HorizontalAlignment="Left" Height="81.737" Margin="97.666,38.534,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" FontWeight="Bold" FontSize="66.667" d:IsLocked="True">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <Image x:Name="img_2x2_trash" Margin="24,34,167,110" Source="/Assets/Icons/sports-mode-remove-icon.png" Stretch="Fill" d:IsLocked="True"/>
+                <Image x:Name="img_2x2_refresh" Margin="24,90,167,54" Source="/Assets/Icons/sports-mode-refresh-icon.png" Stretch="Fill" d:IsLocked="True"/>
+            </Grid>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="761*"/>
+        </Grid.RowDefinitions>
+    	<Slider x:Name="slider_chufs" 
+                HorizontalAlignment="Left" 
+                Margin="99,343,0,0" 
+                Grid.Row="2" 
+                VerticalAlignment="Top" 
+                Width="256"
+                Minimum="4000"
+                Maximum="12000"
+                SmallChange="2000"
+                LargeChange="2000" ManipulationCompleted="OnSliderCompleted"
+                />
+    	<TextBlock x:Name="txt_chufs" 
+                   HorizontalAlignment="Left" 
+                   Height="56" 
+                   Margin="79,239,0,0" 
+                   Grid.Row="2" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Width="295" 
+                   TextAlignment="Center"
+                   Text="{Binding Value, ElementName=slider_chufs}"
+                   />
+
+        <!--
+        <phone:LongListSelector 
+            x:Name="SportsGrid"
+            HorizontalAlignment="Left" 
+            Height="758" 
+            VerticalAlignment="Top" 
+            Width="480" 
+            Margin="0,3,0,0" 
+            Grid.Row="2"
+            LayoutMode="Grid"
+            GridCellSize="150,150">
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="grid_2x2" Grid.RowSpan="2" d:IsLocked="True">
+                        <Rectangle x:Name="rect_2x2" Fill="#00000000" HorizontalAlignment="Left" Height="192" Stroke="White" VerticalAlignment="Top" Width="239" Margin="0,1,0,-1" d:IsLocked="True"/>
+                        <TextBlock x:Name="txt_2x2_unit" Text="{Binding Unit}" HorizontalAlignment="Left" Height="35" Margin="92,111.622,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" d:IsLocked="True">
+                            <TextBlock.RenderTransform>
+                                <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock x:Name="txt_2x2_title" Text="{Binding Title}" HorizontalAlignment="Left" Height="35" Margin="96,27.465,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" d:IsLocked="True">
+                            <TextBlock.RenderTransform>
+                                <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock x:Name="txt_2x2_value" Text="{Binding Value}" HorizontalAlignment="Left" Height="81.737" Margin="97.666,38.534,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" FontWeight="Bold" FontSize="66.667" d:IsLocked="True">
+                            <TextBlock.RenderTransform>
+                                <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <Image x:Name="img_2x2_trash" Margin="24,34,167,110" Source="/Assets/Icons/sports-mode-remove-icon.png" Stretch="Fill" d:IsLocked="True"/>
+                        <Image x:Name="img_2x2_refresh" Margin="24,90,167,54" Source="/Assets/Icons/sports-mode-refresh-icon.png" Stretch="Fill" d:IsLocked="True"/>
+                    </Grid>
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
+        -->
+        
+        <!-- 1x2 
+        <Grid>
+            <Rectangle x:Name="rect_border" Fill="#00000000" HorizontalAlignment="Left" Height="384" Stroke="White" VerticalAlignment="Top" Width="240" Margin="0,0,0,-256"/>
+            <Image x:Name="img_tash" Margin="25,133,407,-53" Source="/Assets/Icons/sports-mode-remove-icon.png" Stretch="Fill" Tap="onDelete"/>
+            <Image x:Name="img_refresh" Margin="25,189,407,-109" Source="/Assets/Icons/sports-mode-refresh-icon.png" Stretch="Fill" Tap="onRefresh"/>
+            <TextBlock x:Name="txt_unit" HorizontalAlignment="Left" Height="35" Margin="89.5,212.667,0,-119.667" TextWrapping="Wrap" Text="meter" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="txt_title" HorizontalAlignment="Left" Height="35" Margin="93.5,127.843,0,-34.843" TextWrapping="Wrap" Text="steps" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="txt_value" HorizontalAlignment="Left" Height="81.737" Margin="95.166,138.912,0,-92.649" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" FontWeight="Bold" FontSize="66.667">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Grid>
+        -->
+        
+        <!-- 3x1 
+        <Grid>
+            <Rectangle x:Name="rect_border" Fill="#00000000" HorizontalAlignment="Left" Height="128" Stroke="White" VerticalAlignment="Top" Width="480"/>
+            <Image x:Name="img_tash" Margin="25,13,407,67" Source="/Assets/Icons/sports-mode-remove-icon.png" Stretch="Fill" Tap="onDelete"/>
+            <Image x:Name="img_refresh" Margin="25,69,407,11" Source="/Assets/Icons/sports-mode-refresh-icon.png" Stretch="Fill" Tap="onRefresh"/>
+            <TextBlock x:Name="txt_unit" HorizontalAlignment="Left" Height="35" Margin="89.5,93.667,0,-0.667" TextWrapping="Wrap" Text="meter" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="txt_title" HorizontalAlignment="Left" Height="35" Margin="93.5,9.51,0,0" TextWrapping="Wrap" Text="steps" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="txt_value" HorizontalAlignment="Left" Height="81.737" Margin="95.166,19.912,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" FontWeight="Bold" FontSize="66.667">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Grid>
+        -->
+        
+        <!-- 2x2 
+        <Grid Margin="0,0,242,240">
+            <Rectangle x:Name="rect_border" Fill="#00000000" HorizontalAlignment="Left" Height="192" Stroke="White" VerticalAlignment="Top" Width="239"/>
+            <TextBlock x:Name="txt_title" HorizontalAlignment="Left" Height="35" Margin="95,32.965,0,0" TextWrapping="Wrap" Text="steps" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="txt_value" HorizontalAlignment="Left" Height="81.737" Margin="95.666,49.034,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White" FontWeight="Bold" FontSize="66.667">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="txt_unit" HorizontalAlignment="Left" Height="35" Margin="95,129.622,0,0" TextWrapping="Wrap" Text="meter" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Foreground="White">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform SkewY="0.335" TranslateY="0.327"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Image x:Name="img_trash" Margin="24,34,167,110" Source="/Assets/Icons/sports-mode-remove-icon.png" Stretch="Fill" Tap="onDelete"/>
+            <Image x:Name="txt_refresh" Margin="24,103,167,41" Source="/Assets/Icons/sports-mode-refresh-icon.png" Stretch="Fill" Tap="onRefresh"/>
+        </Grid>
+        -->
+        
+    </Grid>
+
+</phone:PhoneApplicationPage>

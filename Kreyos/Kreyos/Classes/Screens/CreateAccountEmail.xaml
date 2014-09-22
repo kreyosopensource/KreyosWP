@@ -1,0 +1,44 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Kreyos.Classes.Screens.CreateAccountEmail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+    	<Grid x:Name="background" Grid.RowSpan="2" Margin="0,2,0,-2">
+    		<Rectangle x:Name="img_green_bg" Fill="#FF2ADCCB" HorizontalAlignment="Left" Height="768" Stroke="Black" VerticalAlignment="Top" Width="480"/>
+    		<Image Margin="0,0,0,10" Source="/Assets/Masks/kreyos-login-bg.png" Stretch="Fill"/>
+
+    	</Grid>
+    	<Image x:Name="img_logo" Margin="89,77,91,613" Grid.RowSpan="2" Source="/Assets/Screens/LoginScreen/logo_kreyos_white.png" Stretch="Fill"/>
+    	<Grid Margin="12,214,12,376" Grid.RowSpan="2">
+    		<TextBox x:Name="txt_email_dummy" HorizontalAlignment="Left" Height="69" TextWrapping="Wrap" Text=" Email" VerticalAlignment="Top" Width="456" FontSize="22.667"/>
+    		<TextBox x:Name="txt_password_dummy" HorizontalAlignment="Left" Height="69" Margin="0,55,0,0" TextWrapping="Wrap" Text=" Password" VerticalAlignment="Top" Width="456" FontSize="22.667"/>
+    		<TextBox x:Name="txt_password_confirm_dummy" HorizontalAlignment="Left" Height="69" Margin="0,109,0,0" TextWrapping="Wrap" Text=" Confirm Password" VerticalAlignment="Top" Width="456" FontSize="22.667"/>
+    		<TextBox x:Name="txt_email" HorizontalAlignment="Left" Height="69" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" FontSize="22.667" LostFocus="EmailOnLoadFocus"/>
+    		<PasswordBox x:Name="txt_password" HorizontalAlignment="Left" Height="69" Margin="0,55,0,0" VerticalAlignment="Top" Width="456" LostFocus="PasswordOnLoadFocus"/>
+    		<PasswordBox x:Name="txt_password_confirm" HorizontalAlignment="Left" Height="69" Margin="0,109,0,0" VerticalAlignment="Top" Width="456" LostFocus="ConfirmPasswordOnLostFocus"/>
+    	</Grid>
+    	<Button x:Name="btn_next" Content="NEXT" HorizontalAlignment="Left" Height="70" Margin="12,396,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="458" FontSize="20" Background="#FF16657E" BorderBrush="#FF16657E" Tap="OnTapNext"/>
+    	<TextBlock x:Name="txt_back" HorizontalAlignment="Left" Height="30" Margin="130,709,0,0" Grid.RowSpan="2" TextWrapping="Wrap" Text="I already have an account" VerticalAlignment="Top" Width="230" FontSize="18.667" TextAlignment="Center" Tap="OnBack"/>
+
+        <!--TitlePanel contains the name of the application and page title-->
+
+        <!--ContentPanel - place additional content here-->
+    </Grid>
+
+</phone:PhoneApplicationPage>
